@@ -1,32 +1,32 @@
 {
   "Version": 1,
-  "Hash": "AyExItSg5DXSeKUhIa5JaJeZKTQPoIQPl53zSbjGbsM=",
+  "Hash": "DTqo6UJDm2M/yYUHcnbP2qC+KdJhxyMvBQ7VOc/xJVY=",
   "Source": "stationeryManagement",
   "BasePath": "_content/stationeryManagement",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+      "Identity": "F:\\2\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
       "Version": 2,
       "Source": "stationeryManagement.Data",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     },
     {
-      "Identity": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
+      "Identity": "F:\\2\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
       "Version": 2,
       "Source": "stationeryManagement.Service",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
   "DiscoveryPatterns": [],
