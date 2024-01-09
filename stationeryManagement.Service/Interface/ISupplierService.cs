@@ -7,7 +7,7 @@ namespace stationeryManagement.Service.Interface
     public interface ISupplierService
     {
         // Create
-        Task<Supplier> CreateSuppiler(SupplierDto supplier);
+        Task<Supplier> CreateSupplier(SupplierDto supplier);
         // Read
         Task<Supplier?> GetSupplierById(int supplierId);
         Task<IEnumerable<Supplier>> GetAllSupplier();

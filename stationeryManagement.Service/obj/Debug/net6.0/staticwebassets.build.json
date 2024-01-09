@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "Hash": "YH5ApaJnWvs0iILSFR5qM7DsNU6YXg9kiklQKkUFAC0=",
+  "Hash": "FfE4jd9sMwchhoAMbsyRxNpKMSD2mYTlzPyWBllUWIw=",
   "Source": "stationeryManagement.Service",
   "BasePath": "_content/stationeryManagement.Service",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "F:\\2\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+      "Identity": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
       "Version": 2,
       "Source": "stationeryManagement.Data",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
     }
   ],
   "DiscoveryPatterns": [],

@@ -36,7 +36,7 @@ namespace stationeryManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SupplierDto supplier)
         {
-            var result = await _supplierService.CreateSuppiler(supplier);
+            var result = await _supplierService.CreateSupplier(supplier);
             return Ok(result);
         }
 

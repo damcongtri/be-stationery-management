@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "stationeryManagement.Service/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.25",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.25",
           "stationeryManagement.Data": "1.0.0"
         },

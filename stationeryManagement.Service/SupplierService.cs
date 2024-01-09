@@ -15,7 +15,7 @@ namespace stationeryManagement.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<Supplier> CreateSuppiler(SupplierDto supplierDto)
+        public async Task<Supplier> CreateSupplier(SupplierDto supplierDto)
         {
             var entity = new Supplier()
             {
