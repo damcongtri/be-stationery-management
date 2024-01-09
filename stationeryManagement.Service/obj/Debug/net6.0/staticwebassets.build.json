@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FfE4jd9sMwchhoAMbsyRxNpKMSD2mYTlzPyWBllUWIw=",
+  "Hash": "njhxVO8Leq+N0NH9bumncdGMySckSo44GRnaHtysmfo=",
   "Source": "stationeryManagement.Service",
   "BasePath": "_content/stationeryManagement.Service",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "stationeryManagement.Data",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
     }
   ],
