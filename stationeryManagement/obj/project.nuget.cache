@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8uGhy92w6dsHSokPMRDIZ+cQf1dnqzzIlnYSEbxT54Vd4vK/x2200RMRgkIzw1uvi3In9TIshlrzPu/LKLA7pQ==",
+  "dgSpecHash": "PrLhhjPQ8by94J9uZ2DLmH/X0ORilqbzPctnJk92QIFFqgmASqSQ3YwJegawKBu6/H3dEnYbb01gAM86k5ZJQA==",
   "success": true,
-  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement\\stationeryManagement.csproj",
+  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement\\stationeryManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trid2\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\trid2\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

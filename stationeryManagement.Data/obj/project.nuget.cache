@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HJDz59QN9g8kfzenRYa8SFA3/5vd1pNMYODk3df74Zg5TWboDA6cIumopXt2BOTFwkjkXbsxUEBWeGsEo+TzkQ==",
+  "dgSpecHash": "KKMWVSoGpO0mQFoyF58TVFRCgarZCHnJhiL6PW6hqRTt+FSs9l0KETbQNVPcg9j3/Qr1qHZdN+as0gkeVWXojw==",
   "success": true,
-  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trid2\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.25\\microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
     "C:\\Users\\trid2\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.25\\microsoft.entityframeworkcore.abstractions.6.0.25.nupkg.sha512",

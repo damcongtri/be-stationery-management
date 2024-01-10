@@ -586,11 +586,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+      "projectUniqueName": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
       "projectName": "stationeryManagement.Data",
-      "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+      "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
       "packagesPath": "C:\\Users\\trid2\\.nuget\\packages\\",
-      "outputPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Data\\obj\\",
+      "outputPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

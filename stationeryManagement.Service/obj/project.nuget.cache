@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GkHX0kVFx1bdUquYwF8fLrYETJ/UuI483NgiI51CANka3GK2F1j3NffHwAmMh3cFjSzngeTh2BNaCqV4lwCz8g==",
+  "dgSpecHash": "D+f+qwazDMH+IypXu2MfWB7Hhs19PQlJ8rNKbD2B0nxRsMZFvdCCvKWND9Rf3itIOkiwKBTWnxJ8+2BzF4bEnw==",
   "success": true,
-  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\stationeryManagement\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
+  "projectFilePath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trid2\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\trid2\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.25\\microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
