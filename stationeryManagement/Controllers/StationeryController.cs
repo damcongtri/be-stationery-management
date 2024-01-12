@@ -35,10 +35,28 @@ namespace stationeryManagement.Controllers
 
         // POST api/<StationeryController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] StationeryDto stationery)
+        public async Task<IActionResult> Post([FromForm] StationeryDto s)
         {
-            var result = await _stationeryservice.CreateStationery(stationery);
-            return Ok(result);
+          
+                var stationery = new StationeryDto { StationeryId=s.StationeryId,Name=s.Name,Description=s.Description,Price=s.Price,Inventory=s.Inventory,ReorderLevel=s.ReorderLevel,SupplierId=s.SupplierId,UnitPrice=s.UnitPrice };
+                //xử lý ảnh
+                if (p.ImageFile.Length > 0)
+                {
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", s.ImageFile.FileName);
+                    using (var stream = System.IO.File.Create(path))
+                    {
+                        await s.ImageFile.CopyToAsync(stream);
+                    }
+                    stationery.Image = "/images/" + p.ImageFile.FileName;
+                }
+                else
+                {
+                    product.Image = "";
+                }
+            _stationeryservice.CreateStationery( stationery);
+               
+                return Ok(product);
+          
         }
 
         // PUT api/<StationeryController>/5
