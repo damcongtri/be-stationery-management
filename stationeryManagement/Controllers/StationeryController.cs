@@ -40,32 +40,55 @@ namespace stationeryManagement.Controllers
           
                 var stationery = new StationeryDto { StationeryId=s.StationeryId,Name=s.Name,Description=s.Description,Price=s.Price,Inventory=s.Inventory,ReorderLevel=s.ReorderLevel,SupplierId=s.SupplierId,UnitPrice=s.UnitPrice };
                 //xử lý ảnh
-                if (p.ImageFile.Length > 0)
+                if (s.ImageFile.Length > 0)
                 {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", s.ImageFile.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "images", Path.GetRandomFileName());
                     using (var stream = System.IO.File.Create(path))
                     {
                         await s.ImageFile.CopyToAsync(stream);
                     }
-                    stationery.Image = "/images/" + p.ImageFile.FileName;
+                    stationery.Image = "/images/" + path;
                 }
                 else
                 {
-                    product.Image = "";
+                stationery.Image = "";
                 }
             _stationeryservice.CreateStationery( stationery);
                
-                return Ok(product);
+                return Ok(stationery);
           
         }
 
         // PUT api/<StationeryController>/5
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> Put(int itemid, [FromBody] StationeryDto stationery)
+        public async Task<IActionResult> Put(int itemid, [FromForm] StationeryDto s)
         {
-            var result = await _stationeryservice.UpdateStationery(stationery, itemid);
-            return Ok(result);
+            var stationery = new StationeryDto { StationeryId = s.StationeryId, Name = s.Name, Description = s.Description, Price = s.Price, Inventory = s.Inventory, ReorderLevel = s.ReorderLevel, SupplierId = s.SupplierId, UnitPrice = s.UnitPrice };
+            if (s.ImageFile.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "images", Path.GetRandomFileName());
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await s.ImageFile.CopyToAsync(stream);
+                }
+                stationery.Image = "/images/" + path;
+                if (!string.IsNullOrEmpty(stationery.Image))
+                {
+                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), stationery.Image.TrimStart('/'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+            }
+            else
+            {
+                stationery.Image = "";
+            }
+            _stationeryservice.UpdateStationery(stationery,itemid);
+
+            return Ok(stationery);
         }
 
         // DELETE api/<StationeryController>/5
