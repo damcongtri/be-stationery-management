@@ -9,13 +9,13 @@ namespace stationeryManagement.Service.Interface
         // Create
         Task<Role> CreateRole(RoleDto role);
         // Read
-        Task<Role?> GetRoleById(int roleId);
+        Task<Role?> GetRoleById(Guid roleId);
         Task<IEnumerable<Role>> GetAllRole();
 
         // Update
-        Task<bool> UpdateRole(RoleDto role, int id);
+        Task<bool> UpdateRole(RoleDto role, Guid id);
 
         // Delete
-        Task<bool> DeleteRole(int roleId);
+        Task<bool> DeleteRole(Guid roleId);
     }
 }

@@ -26,7 +26,7 @@ namespace stationeryManagement.Service
             return result;
 
         }
-        public async Task<Role?> GetRoleById(int roleId)
+        public async Task<Role?> GetRoleById(Guid roleId)
         {
             return await _unitOfWork.RoleRepository.GetByIdAsync(roleId);
         }
@@ -34,7 +34,7 @@ namespace stationeryManagement.Service
         {
             return await _unitOfWork.RoleRepository.GetAll().ToListAsync();
         }
-        public async Task<bool> UpdateRole(RoleDto roleDto, int id)
+        public async Task<bool> UpdateRole(RoleDto roleDto, Guid id)
         {
             var role = new Role()
             {
@@ -48,7 +48,7 @@ namespace stationeryManagement.Service
 
             return await _unitOfWork.CommitAsync() > 0;
         }
-        public async Task<bool> DeleteRole(int roleId)
+        public async Task<bool> DeleteRole(Guid roleId)
         {
             var role = await _unitOfWork.RoleRepository.GetByIdAsync(roleId);
             if (role != null)

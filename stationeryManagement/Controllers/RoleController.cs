@@ -26,7 +26,7 @@ namespace stationeryManagement.Controllers
 
         // GET api/<RoleController>/5
         [HttpGet("{id}", Name = "role")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await _roleService.GetRoleById(id));
         }
@@ -42,7 +42,7 @@ namespace stationeryManagement.Controllers
 
         // PUT api/<RoleController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] RoleDto role)
+        public async Task<IActionResult> Put(Guid id, [FromBody] RoleDto role)
         {
             var result = await _roleService.UpdateRole(role, id);
             return Ok(result);
@@ -50,7 +50,7 @@ namespace stationeryManagement.Controllers
 
         // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             return Ok(await _roleService.DeleteRole(id));
         }
