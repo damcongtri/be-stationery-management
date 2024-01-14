@@ -18,5 +18,7 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IDbContext, ApplicationContext>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
+        builder.Services.AddScoped<ISupplierService, SupplierService>();
+        builder.Services.AddScoped<IUserService, UserService>();
     }
 }

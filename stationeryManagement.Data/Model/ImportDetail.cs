@@ -12,8 +12,8 @@ public class ImportDetail
     public int Quantity { get; set; }
     public decimal UnitPrice { get; set; }
     public decimal TotalAmount { get; set; }
-
     
+    [ForeignKey("ImportId")]
     public virtual Import Import { get; set; }
     [ForeignKey("StationeryId")]
     public virtual Stationery Stationery { get; set; }

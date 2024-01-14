@@ -8,12 +8,12 @@ public class Request
 {
     [Key]
     public int RequestId { get; set; }
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public DateTime RequestDate { get; set; } = DateTime.Now;
     public RequestStatus ApprovalStatus { get; set; } = RequestStatus.Pending;
     public DateTime? CancellationDate { get; set; }
     public DateTime? WithdrawalDate { get; set; }
-    public int? ApprovedId { get; set; }
+    public Guid? ApprovedId { get; set; }
     
     [ForeignKey("UserId")]
     public virtual User User { get; set; }

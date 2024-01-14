@@ -22,14 +22,14 @@ namespace stationeryManagement.Controllers
         }
         // GET: api/Category
         [HttpGet]
-        public async Task<IEnumerable<Category>> Get()
+        public async Task<IEnumerable<Category>> GetCategory()
         {
             return await _categoryService.GetAllCategories();
         }
 
         // GET: api/Category/5
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{id}", Name = "GetCategory")]
+        public async Task<IActionResult> GetCategory(int id)
         {
             return Ok(await _categoryService.GetCategoryById(id));
         }
