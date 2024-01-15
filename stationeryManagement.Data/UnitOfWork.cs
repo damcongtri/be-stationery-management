@@ -11,6 +11,7 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     private ISupplierRepository _supplierRepository;
     private IUserRepository _userRepository;
     private IRoleRepository _roleRepository;
+    private IStationeryRepository _stationeryRepository;
     public UnitOfWork(IDbContext context) : base(context)
     {
         
@@ -20,4 +21,5 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     public ISupplierRepository SupplierRepository => _supplierRepository ??= new SupplierRepository(DbContext);
     public IUserRepository UserRepository => _userRepository ??= new UserRepository(DbContext);
     public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(DbContext);
+    public IStationeryRepository StationeryRepository=> _stationeryRepository ??= new StationeryRepository(DbContext);
 }

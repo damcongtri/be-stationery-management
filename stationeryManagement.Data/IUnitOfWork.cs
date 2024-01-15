@@ -8,4 +8,5 @@ public interface IUnitOfWork: IUnitOfWorkBase
     ISupplierRepository SupplierRepository { get; }
     IUserRepository UserRepository { get; }
     IRoleRepository RoleRepository { get; }
+    IStationeryRepository StationeryRepository { get; }
 }
