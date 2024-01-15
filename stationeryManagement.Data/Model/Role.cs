@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using stationeryManagement.Data.Model;
 
 namespace stationeryManagement.Data;
@@ -9,6 +11,6 @@ public class Role
     public Guid RoleId { get; set; }
     public string RoleName { get; set; }
     public decimal ThresholdAmountPerMonth { get; set; }
-    
-    public virtual ICollection<User> Users { get; set; }
+    [JsonIgnore]
+    public virtual ICollection<User>? Users { get; set; }
 }

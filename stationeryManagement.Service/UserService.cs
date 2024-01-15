@@ -21,7 +21,7 @@ public class UserService : EntityService<User>, IUserService
 
     public async Task<IEnumerable<User>> GetUsers()
     {
-        return await _unitOfWork.UserRepository.GetAll().ToListAsync();
+        return await _unitOfWork.UserRepository.GetUserWithRole().ToListAsync();
     }
 
     public async Task<User?> GetUser(Guid id)
