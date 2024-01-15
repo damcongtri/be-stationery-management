@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace stationeryManagement.Data.Model;
 
@@ -17,5 +18,6 @@ public class Stationery
     public int ReorderLevel { get; set; }
     public int? SupplierId { get; set; }
 
+    [ForeignKey("SupplierId")]
     public virtual Supplier? Supplier { get; set; }
 }

@@ -12,8 +12,8 @@ using stationeryManagement.Data.Common.DbContext;
 namespace stationeryManagement.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240102105029_init")]
-    partial class init
+    [Migration("20240110085010_v2")]
+    partial class v2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,8 +52,8 @@ namespace stationeryManagement.Migrations
                     b.Property<DateTime>("ImportDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserCreateId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserCreateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ImportId");
 
@@ -94,6 +94,24 @@ namespace stationeryManagement.Migrations
                     b.ToTable("ImportDetails");
                 });
 
+            modelBuilder.Entity("stationeryManagement.Data.Model.RefreshToken", b =>
+                {
+                    b.Property<int>("TokenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TokenId"), 1L, 1);
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TokenId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("stationeryManagement.Data.Model.Request", b =>
                 {
                     b.Property<int>("RequestId")
@@ -105,8 +123,8 @@ namespace stationeryManagement.Migrations
                     b.Property<int>("ApprovalStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ApprovedId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ApprovedId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CancellationDate")
                         .HasColumnType("datetime2");
@@ -114,8 +132,8 @@ namespace stationeryManagement.Migrations
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("WithdrawalDate")
                         .HasColumnType("datetime2");
@@ -157,17 +175,19 @@ namespace stationeryManagement.Migrations
 
             modelBuilder.Entity("stationeryManagement.Data.Model.Stationery", b =>
                 {
-                    b.Property<int>("ItemId")
+                    b.Property<int>("StationeryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StationeryId"), 1L, 1);
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Inventory")
@@ -190,7 +210,7 @@ namespace stationeryManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ItemId");
+                    b.HasKey("StationeryId");
 
                     b.HasIndex("CategoryId");
 
@@ -201,14 +221,15 @@ namespace stationeryManagement.Migrations
 
             modelBuilder.Entity("stationeryManagement.Data.Model.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastLoginDate")
@@ -225,11 +246,11 @@ namespace stationeryManagement.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("RoleId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("SuperiorId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SuperiorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserId");
 
@@ -242,11 +263,9 @@ namespace stationeryManagement.Migrations
 
             modelBuilder.Entity("stationeryManagement.Data.Role", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<Guid>("RoleId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RoleName")
                         .IsRequired()
@@ -311,6 +330,17 @@ namespace stationeryManagement.Migrations
                     b.Navigation("Stationery");
                 });
 
+            modelBuilder.Entity("stationeryManagement.Data.Model.RefreshToken", b =>
+                {
+                    b.HasOne("stationeryManagement.Data.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("stationeryManagement.Data.Model.Request", b =>
                 {
                     b.HasOne("stationeryManagement.Data.Model.User", "Approver")
@@ -363,10 +393,8 @@ namespace stationeryManagement.Migrations
             modelBuilder.Entity("stationeryManagement.Data.Model.User", b =>
                 {
                     b.HasOne("stationeryManagement.Data.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("stationeryManagement.Data.Model.User", "Superior")
                         .WithMany("Subordinates")
@@ -397,6 +425,11 @@ namespace stationeryManagement.Migrations
                     b.Navigation("Requests");
 
                     b.Navigation("Subordinates");
+                });
+
+            modelBuilder.Entity("stationeryManagement.Data.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("stationeryManagement.Data.Supplier", b =>

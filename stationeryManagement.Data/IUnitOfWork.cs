@@ -6,5 +6,6 @@ public interface IUnitOfWork: IUnitOfWorkBase
 {
     ICategoryRepository CategoryRepository { get; }
     ISupplierRepository SupplierRepository { get; }
+    IUserRepository UserRepository { get; }
     IRoleRepository RoleRepository { get; }
 }
