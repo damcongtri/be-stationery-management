@@ -1,6 +1,6 @@
 namespace stationeryManagement.Service.Utils;
 
-public class FIleUtils
+public class FileUtils
 {
     /// <summary>
     /// Upload image to wwwroot/image

@@ -4069,6 +4069,8 @@
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
           "Microsoft.EntityFrameworkCore": "6.0.25",
+          "Microsoft.IdentityModel.Tokens": "6.10.0",
+          "System.IdentityModel.Tokens.Jwt": "6.10.0",
           "stationeryManagement.Data": "1.0.0"
         },
         "compile": {

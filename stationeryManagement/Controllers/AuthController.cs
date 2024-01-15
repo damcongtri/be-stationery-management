@@ -11,16 +11,17 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 
 namespace stationeryManagement.Controllers
 {
-    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IConfiguration _config;
+        private readonly IAuthService _authService;
         
-        public AuthController(IUserService userService)
+        public AuthController(IUserService userService, IAuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
         [AllowAnonymous]
         [HttpPost("login")]
@@ -30,32 +31,12 @@ namespace stationeryManagement.Controllers
             IActionResult response = Unauthorized("Sai thông tin đăng nhập");
             if (user != null)
             {
-                var tokenString = BuildToken(user);
+                var tokenString = _authService.GenerateToken(user);
                 response = Ok(new { token = tokenString });
             }
-
             return response;
         }
-        private string BuildToken(User user)
-        {
-            var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sid, user.UserId.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.RoleName.ToString()),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Name),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                // Add more claims if needed
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(null,null,
-                claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        
 
 
     }
