@@ -15,6 +15,7 @@ public static class DependenciesInjectionRegister
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
         );
         
+        builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
         builder.Services.AddScoped<IDbContext, ApplicationContext>();
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -22,5 +23,6 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
         builder.Services.AddScoped<IStationeryService, StationeryService>();
+        builder.Services.AddScoped<IAuthService, AuthService>();
     }
 }
