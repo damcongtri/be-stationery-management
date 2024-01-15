@@ -31,4 +31,5 @@ public class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext, IDbCo
     public DbSet<Role>? Roles { get; set; }
     public DbSet<Supplier>? Suppliers { get; set; }
     public DbSet<User>? Users { get; set; }
+    public DbSet<RefreshToken>? RefreshTokens { get; set; }
 }

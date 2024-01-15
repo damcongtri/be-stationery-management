@@ -7,7 +7,7 @@ public class Import
 {
     [Key]
     public int ImportId { get; set; }
-    public int UserCreateId { get; set; }
+    public Guid UserCreateId { get; set; }
     public DateTime ImportDate { get; set; } = DateTime.Now;
     
     [ForeignKey("UserCreateId")]

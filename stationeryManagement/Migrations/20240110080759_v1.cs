@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace stationeryManagement.Migrations
 {
-    public partial class init : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,8 +26,7 @@ namespace stationeryManagement.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ThresholdAmountPerMonth = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -54,15 +53,15 @@ namespace stationeryManagement.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SuperiorId = table.Column<int>(type: "int", nullable: true),
+                    SuperiorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastLoginDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,8 +70,7 @@ namespace stationeryManagement.Migrations
                         name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                     table.ForeignKey(
                         name: "FK_Users_Users_SuperiorId",
                         column: x => x.SuperiorId,
@@ -84,10 +82,11 @@ namespace stationeryManagement.Migrations
                 name: "Stationeries",
                 columns: table => new
                 {
-                    ItemId = table.Column<int>(type: "int", nullable: false)
+                    StationeryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UnitPrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Inventory = table.Column<int>(type: "int", nullable: false),
@@ -97,7 +96,7 @@ namespace stationeryManagement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stationeries", x => x.ItemId);
+                    table.PrimaryKey("PK_Stationeries", x => x.StationeryId);
                     table.ForeignKey(
                         name: "FK_Stationeries_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -116,7 +115,7 @@ namespace stationeryManagement.Migrations
                 {
                     ImportId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserCreateId = table.Column<int>(type: "int", nullable: false),
+                    UserCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImportDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -131,17 +130,36 @@ namespace stationeryManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                columns: table => new
+                {
+                    TokenId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.TokenId);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Requests",
                 columns: table => new
                 {
                     RequestId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ApprovalStatus = table.Column<int>(type: "int", nullable: false),
                     CancellationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     WithdrawalDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ApprovedId = table.Column<int>(type: "int", nullable: true)
+                    ApprovedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,7 +202,7 @@ namespace stationeryManagement.Migrations
                         name: "FK_ImportDetails_Stationeries_StationeryId",
                         column: x => x.StationeryId,
                         principalTable: "Stationeries",
-                        principalColumn: "ItemId",
+                        principalColumn: "StationeryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -211,7 +229,7 @@ namespace stationeryManagement.Migrations
                         name: "FK_RequestDetails_Stationeries_StationeryId",
                         column: x => x.StationeryId,
                         principalTable: "Stationeries",
-                        principalColumn: "ItemId",
+                        principalColumn: "StationeryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -229,6 +247,11 @@ namespace stationeryManagement.Migrations
                 name: "IX_Imports_UserCreateId",
                 table: "Imports",
                 column: "UserCreateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RequestDetails_RequestId",
@@ -275,6 +298,9 @@ namespace stationeryManagement.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ImportDetails");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "RequestDetails");
