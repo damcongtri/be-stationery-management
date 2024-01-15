@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Common.BaseRepository;
@@ -115,5 +116,15 @@ public class UserService : EntityService<User>, IUserService
         }
 
         return false;
+    }
+
+    public async Task<User?> Login(UserLoginDto userLoginDto)
+    {
+        var user = await _unitOfWork.UserRepository.FirstOrDefaultAsync(u => u.Email == userLoginDto.Email);
+        if (user != null && PasswordUtils.VerifyPassword( userLoginDto.Password,user.Password))
+        {
+            return user;
+        }
+        return null;
     }
 }

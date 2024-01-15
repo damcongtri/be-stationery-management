@@ -53,8 +53,6 @@ namespace stationeryManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] UserDto userDto)
         {
-           
-            
             var user = await _userService.CreateUser(userDto);
             if (user is null)
             {
