@@ -4,14 +4,14 @@ using Microsoft.IdentityModel.Tokens;
 using stationeryManagement.Code;
 
 var builder = WebApplication.CreateBuilder(args);
-// builder.WebHost.ConfigureKestrel(serverOptions =>
-// {
-//     serverOptions.ListenAnyIP(5000);
-// });
-// builder.Host.ConfigureAppConfiguration((context, config) =>
-// {
-//     config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-// });
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5000);
+});
+builder.Host.ConfigureAppConfiguration((context, config) =>
+{
+    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicy", builder =>
