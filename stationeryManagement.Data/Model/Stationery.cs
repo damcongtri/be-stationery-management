@@ -16,6 +16,7 @@ public class Stationery
     public decimal Price { get; set; }
     public int Inventory { get; set; }
     public int? SupplierId { get; set; }
+    public bool Deleted { get; set; } = false;
 
     [ForeignKey("SupplierId")]
     public virtual Supplier? Supplier { get; set; }

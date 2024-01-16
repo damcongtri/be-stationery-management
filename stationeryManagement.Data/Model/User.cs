@@ -18,6 +18,8 @@ public class User
     public Guid? SuperiorId { get; set; }
     public DateTime RegistrationDate { get; set; }
     public DateTime? LastLoginDate { get; set; }
+    public bool Deleted { get; set; } = false;
+
     [ForeignKey("RoleId")]
     public virtual Role? Role { get; set; }
     public virtual ICollection<Request>? Requests { get; set; }
