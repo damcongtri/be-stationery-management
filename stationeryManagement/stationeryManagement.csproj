@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.25" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.25" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
@@ -24,7 +25,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="images\" />
       <Folder Include="Utils\" />
       <Folder Include="wwwroot\" />
     </ItemGroup>

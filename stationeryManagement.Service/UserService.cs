@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Common.BaseRepository;
@@ -33,7 +34,7 @@ public class UserService : EntityService<User>, IUserService
     {
         if (userDto.FileUpload != null && userDto.FileUpload.Length > 0)
         {
-            var path = await FIleUtils.AddFile("avatar", userDto.FileUpload);
+            var path = await FileUtils.AddFile("avatar", userDto.FileUpload);
             userDto.Image = path;
         }
         else
@@ -66,7 +67,7 @@ public class UserService : EntityService<User>, IUserService
             {
                 if (!string.IsNullOrWhiteSpace(user.Image))
                 {
-                    FIleUtils.RemoveFile(user.Image);
+                    FileUtils.RemoveFile(user.Image);
                 }
             }
 
@@ -86,10 +87,10 @@ public class UserService : EntityService<User>, IUserService
         {
             if (userDto.FileUpload != null && userDto.FileUpload.Length > 0)
             {
-                var path = await FIleUtils.AddFile("avatar", userDto.FileUpload);
+                var path = await FileUtils.AddFile("avatar", userDto.FileUpload);
                 if (!string.IsNullOrWhiteSpace(userDto.Image))
                 {
-                    FIleUtils.RemoveFile(userDto.Image);
+                    FileUtils.RemoveFile(userDto.Image);
                 }
 
                 userDto.Image = path;
@@ -116,4 +117,15 @@ public class UserService : EntityService<User>, IUserService
 
         return false;
     }
+
+    public async Task<User?> Login(UserLoginDto userLoginDto)
+    {
+        var user = await _unitOfWork.UserRepository.GetUserWithRole().FirstOrDefaultAsync(u => u.Email == userLoginDto.Email);
+        if (user != null && PasswordUtils.VerifyPassword( userLoginDto.Password,user.Password))
+        {
+            return user;
+        }
+        return null;
+    }
+    
 }

@@ -10,8 +10,8 @@ public class ImportDetail
     public int ImportId { get; set; }
     public int StationeryId { get; set; }
     public int Quantity { get; set; }
-    public decimal UnitPrice { get; set; }
-    public decimal TotalAmount { get; set; }
+    [MaxLength(100)]
+    public string UnitPrice { get; set; }
     
     [ForeignKey("ImportId")]
     public virtual Import Import { get; set; }
