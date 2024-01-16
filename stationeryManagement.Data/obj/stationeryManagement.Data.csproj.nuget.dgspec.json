@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {}
+    "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {}
   },
   "projects": {
-    "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
+    "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+        "projectUniqueName": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
         "projectName": "stationeryManagement.Data",
-        "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
-        "packagesPath": "C:\\Users\\trid2\\.nuget\\packages\\",
-        "outputPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\old\\stationeryManagement\\stationeryManagement.Data\\obj\\",
+        "projectPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+        "packagesPath": "C:\\Users\\Hoang Anh\\.nuget\\packages\\",
+        "outputPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\trid2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Hoang Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

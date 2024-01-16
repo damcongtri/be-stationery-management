@@ -22,5 +22,7 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
         builder.Services.AddScoped<IStationeryService, StationeryService>();
+        builder.Services.AddScoped<IImportService, ImportService>();
+
     }
 }

@@ -2,6 +2,7 @@
 using stationeryManagement.Data.Common.DbContext;
 using stationeryManagement.Data.Repository;
 using stationeryManagement.Data.Repository.Interface;
+using System.Security.AccessControl;
 
 namespace stationeryManagement.Data;
 
@@ -12,6 +13,7 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     private IUserRepository _userRepository;
     private IRoleRepository _roleRepository;
     private IStationeryRepository _stationeryRepository;
+    private IImportRepository _importRepository;
     public UnitOfWork(IDbContext context) : base(context)
     {
         
@@ -22,4 +24,6 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     public IUserRepository UserRepository => _userRepository ??= new UserRepository(DbContext);
     public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(DbContext);
     public IStationeryRepository StationeryRepository=> _stationeryRepository ??= new StationeryRepository(DbContext);
+    public IImportRepository ImportRepository => _importRepository ??= new ImportRepository(DbContext);
+
 }
