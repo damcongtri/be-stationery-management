@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using stationeryManagement.Data.Common.DbContext;
 
@@ -11,9 +12,10 @@ using stationeryManagement.Data.Common.DbContext;
 namespace stationeryManagement.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240116091806_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,9 +37,6 @@ namespace stationeryManagement.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.HasKey("CategoryId");
 
                     b.HasIndex("CategoryName")
@@ -53,9 +52,6 @@ namespace stationeryManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImportId"), 1L, 1);
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("ImportDate")
                         .HasColumnType("datetime2");
@@ -176,9 +172,6 @@ namespace stationeryManagement.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -217,9 +210,6 @@ namespace stationeryManagement.Migrations
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -293,9 +283,6 @@ namespace stationeryManagement.Migrations
                     b.Property<string>("ContactInfo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

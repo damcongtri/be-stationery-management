@@ -15,7 +15,16 @@ public class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext, IDbCo
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // ... cấu hình các entity khác
+        modelBuilder.Entity<Role>()
+            .HasIndex(c => c.RoleName)
+            .IsUnique();
+        modelBuilder.Entity<User>()
+            .HasIndex(c => c.Email)
+            .IsUnique();
+        
+        modelBuilder.Entity<Category>()
+            .HasIndex(c => c.CategoryName)
+            .IsUnique();
 
         modelBuilder.Entity<Request>()
             .HasOne(r => r.Approver)
@@ -31,5 +40,5 @@ public class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext, IDbCo
     public DbSet<Role>? Roles { get; set; }
     public DbSet<Supplier>? Suppliers { get; set; }
     public DbSet<User>? Users { get; set; }
-    public DbSet<RefreshToken>? RefreshTokens { get; set; }
+    // public DbSet<RefreshToken>? RefreshTokens { get; set; }
 }

@@ -11,5 +11,7 @@ public class Supplier
     public string Name { get; set; }
     [DataType("Nvarchar(250)")]
     public string ContactInfo { get; set; }
+    public bool Deleted { get; set; } = false;
+    
     public virtual ICollection<Stationery>? StationeryItems { get; set; }
 }

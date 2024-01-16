@@ -34,18 +34,40 @@ public class RequestService:EntityService<Request>,IRequestService
 
     
 
-    //
+    // Create
     
-    public async Task<Request> CreateRequest(RequestCreateDto request)
+    public async Task<Request?> CreateRequest(RequestCreateDto request, Guid userId)
     {
-        var newRequset =  new Request() { };
-        return await _unitOfWork.RequestRepository.AddAsync(newRequset);
+        var newRequset =  new Request()
+        {
+           UserId = userId
+        };
+        foreach (var item in request.Stationeries)
+        {
+            var rd = new RequestDetail
+            {
+                StationeryId = item.StationeryId,
+                Quantity = item.Quantity
+            };
+            newRequset.RequestDetails.Add(rd);
+        }
+
+        var r = await _unitOfWork.RequestRepository.AddAsync(newRequset);
+        return await _unitOfWork.CommitAsync() >0 ?r:null;
     }
     //Update
     public async Task<bool> UpdateSatus(int requestId, RequestStatus status)
     {
         var findRequest = await _unitOfWork.RequestRepository.GetByIdAsync(requestId);
         findRequest.ApprovalStatus = status;
+        if (status == RequestStatus.Cancel)
+        {
+            findRequest.CancellationDate = DateTime.Now;
+        }
+        if (status == RequestStatus.Approved)
+        {
+            findRequest.WithdrawalDate = DateTime.Now;
+        }
         return await _unitOfWork.CommitAsync() >0;
     }
 }

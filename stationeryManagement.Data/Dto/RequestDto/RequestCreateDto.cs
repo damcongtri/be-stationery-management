@@ -4,7 +4,6 @@ namespace stationeryManagement.Data.Dto.RequestDto;
 
 public class RequestCreateDto
 {
-    public Guid UserId { get; set; }
     public DateTime RequestDate { get; set; } = DateTime.Now;
     public RequestStatus ApprovalStatus { get; set; } = RequestStatus.Pending;
     public DateTime? CancellationDate { get; set; }

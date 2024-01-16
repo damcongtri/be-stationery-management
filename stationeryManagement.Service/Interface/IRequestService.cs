@@ -7,7 +7,7 @@ namespace stationeryManagement.Service.Interface;
 public interface IRequestService
 {
     // Create
-    Task<Request> CreateRequest(RequestCreateDto request);
+    Task<Request?> CreateRequest(RequestCreateDto request, Guid userId);
 
     // Read
     Task<Request?> GetRequestById(int requestId);

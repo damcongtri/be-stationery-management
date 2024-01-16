@@ -38,7 +38,6 @@ namespace stationeryManagement.Service
                 Image = stationeryDto.Image,
                 Price = stationeryDto.Price,
                 Inventory = stationeryDto.Inventory,
-                ReorderLevel = stationeryDto.ReorderLevel,
                 SupplierId = stationeryDto.SupplierId,
                 
               
@@ -70,8 +69,8 @@ namespace stationeryManagement.Service
                 Image = stationeryDto.Image,
                 Price = stationeryDto.Price,
                 Inventory = stationeryDto.Inventory,
-                ReorderLevel = stationeryDto.ReorderLevel,
                 SupplierId = stationeryDto.SupplierId,
+                CategoryId = stationeryDto.CategoryId
 
             };
             var result = await _unitOfWork.StationeryRepository.AddAsync(entity);
