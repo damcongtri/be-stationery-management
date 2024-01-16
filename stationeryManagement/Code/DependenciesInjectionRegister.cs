@@ -23,11 +23,8 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IRoleService, RoleService>();
         builder.Services.AddScoped<IStationeryService, StationeryService>();
-<<<<<<< HEAD
         builder.Services.AddScoped<IImportService, ImportService>();
-
-=======
         builder.Services.AddScoped<IAuthService, AuthService>();
->>>>>>> cfd8dc9234cde3e5a633c98669358c2f6dc764ff
+
     }
 }

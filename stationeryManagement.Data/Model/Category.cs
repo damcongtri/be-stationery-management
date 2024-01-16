@@ -10,6 +10,8 @@ public class Category
     public int CategoryId { get; set; }
     [MaxLength(150)]
     public string CategoryName { get; set; }
+
+    public bool Deleted { get; set; } = false;
     
     public virtual ICollection<Stationery>? Stationery { get; set; }
 }
