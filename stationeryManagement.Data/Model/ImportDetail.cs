@@ -12,7 +12,7 @@ public class ImportDetail
     public int Quantity { get; set; }
     [MaxLength(100)]
     public string UnitPrice { get; set; }
-    
+        
     [ForeignKey("ImportId")]
     public virtual Import Import { get; set; }
     [ForeignKey("StationeryId")]

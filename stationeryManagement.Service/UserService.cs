@@ -88,9 +88,9 @@ public class UserService : EntityService<User>, IUserService
             if (userDto.FileUpload != null && userDto.FileUpload.Length > 0)
             {
                 var path = await FileUtils.AddFile("avatar", userDto.FileUpload);
-                if (!string.IsNullOrWhiteSpace(userDto.Image))
+                if (!string.IsNullOrWhiteSpace(findUser.Image))
                 {
-                    FileUtils.RemoveFile(userDto.Image);
+                    FileUtils.RemoveFile(findUser.Image);
                 }
 
                 userDto.Image = path;
