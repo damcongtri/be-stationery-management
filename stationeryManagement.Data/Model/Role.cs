@@ -9,6 +9,7 @@ public class Role
 {
     [Key]
     public Guid RoleId { get; set; }
+    [MaxLength(100)]
     public string RoleName { get; set; }
     public decimal ThresholdAmountPerMonth { get; set; }
     [JsonIgnore]

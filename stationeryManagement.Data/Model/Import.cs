@@ -9,6 +9,7 @@ public class Import
     public int ImportId { get; set; }
     public Guid UserCreateId { get; set; }
     public DateTime ImportDate { get; set; } = DateTime.Now;
+    public decimal? TotalAmount { get; set; }
     
     [ForeignKey("UserCreateId")]
     public virtual User UserCreate { get; set; }
