@@ -51,9 +51,9 @@ namespace stationeryManagement.Controllers
                 }
                 else
                 {
-                stationery.Image = "";
+                    stationery.Image = "";
                 }
-            _stationeryservice.CreateStationery( stationery);
+                _stationeryservice.CreateStationery(stationery);
                
                 return Ok(stationery);
           

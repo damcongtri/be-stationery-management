@@ -10,4 +10,5 @@ public interface IUnitOfWork: IUnitOfWorkBase
     IRoleRepository RoleRepository { get; }
     IStationeryRepository StationeryRepository { get; }
     IRequestRepository RequestRepository { get; }
+    IImportRepository ImportRepository { get; }
 }

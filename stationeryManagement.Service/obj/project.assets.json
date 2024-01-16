@@ -1098,7 +1098,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "BCrypt.Net-Core >= 1.6.0",
-      "Microsoft.EntityFrameworkCore >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.25",
       "Microsoft.IdentityModel.Tokens >= 6.10.0",
       "System.IdentityModel.Tokens.Jwt >= 6.10.0",
@@ -1156,10 +1155,6 @@
           "BCrypt.Net-Core": {
             "target": "Package",
             "version": "[1.6.0, )"
-          },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[6.0.25, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
