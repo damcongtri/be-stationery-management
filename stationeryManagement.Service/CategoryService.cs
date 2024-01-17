@@ -57,7 +57,7 @@ public class CategoryService : EntityService<Category>, ICategoryService
         var category = await _unitOfWork.CategoryRepository.GetByIdAsync(categoryId);
         if (category != null)
         {
-            _unitOfWork.CategoryRepository.Delete(category);
+           await _unitOfWork.CategoryRepository.DeleteByIdAsync(category.CategoryId);
         }
 
         return await _unitOfWork.CommitAsync() > 0;

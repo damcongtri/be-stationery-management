@@ -25,6 +25,7 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IStationeryService, StationeryService>();
         builder.Services.AddScoped<IImportService, ImportService>();
         builder.Services.AddScoped<IAuthService, AuthService>();
+        builder.Services.AddScoped<IRequestService, RequestService>();
 
     }
 }

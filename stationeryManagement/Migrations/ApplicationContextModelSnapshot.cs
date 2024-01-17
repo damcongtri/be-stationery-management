@@ -60,9 +60,6 @@ namespace stationeryManagement.Migrations
                     b.Property<DateTime>("ImportDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid>("UserCreateId")
                         .HasColumnType("uniqueidentifier");
 
@@ -89,11 +86,6 @@ namespace stationeryManagement.Migrations
 
                     b.Property<int>("StationeryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UnitPrice")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ImportDetailsId");
 

@@ -1098,7 +1098,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "BCrypt.Net-Core >= 1.6.0",
-      "Microsoft.EntityFrameworkCore >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.25",
       "Microsoft.IdentityModel.Tokens >= 6.10.0",
       "System.IdentityModel.Tokens.Jwt >= 6.10.0",
@@ -1157,10 +1156,6 @@
             "target": "Package",
             "version": "[1.6.0, )"
           },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[6.0.25, )"
-          },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -1198,5 +1193,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.417\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

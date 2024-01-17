@@ -8,6 +8,4 @@ public class CategoryDto
     public int? CategoryId { get; set; }
     [Required]
     public string CategoryName { get; set; }
-
-    public ICollection<Stationery>? Stationery { get; set; }
 }
