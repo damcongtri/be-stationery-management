@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using stationeryManagement.Code;
+using stationeryManagement.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -53,6 +54,7 @@ app.UseHttpsRedirection();
 app.UseCors("MyPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();

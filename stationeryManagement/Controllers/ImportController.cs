@@ -6,6 +6,7 @@ using stationeryManagement.Service;
 using stationeryManagement.Service.Interface;
 using System.Composition;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,6 +14,7 @@ namespace stationeryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ImportController : ControllerBase
     {
         private IImportService _importService;

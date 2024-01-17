@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Common.DbContext;
+using stationeryManagement.Middlewares;
 using stationeryManagement.Service;
 using stationeryManagement.Service.Interface;
 
@@ -14,6 +15,7 @@ public static class DependenciesInjectionRegister
             .UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContextConnection") ?? throw new InvalidOperationException("Connection string 'DatabaseContextConnection' not found."), b => b.MigrationsAssembly("stationeryManagement"))
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
         );
+        
         
         builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
         builder.Services.AddScoped<IDbContext, ApplicationContext>();

@@ -92,7 +92,6 @@ public class UserService : EntityService<User>, IUserService
                 {
                     FileUtils.RemoveFile(findUser.Image);
                 }
-
                 findUser.Image = path;
             }
             
