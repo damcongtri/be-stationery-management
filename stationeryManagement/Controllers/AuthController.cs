@@ -17,12 +17,13 @@ namespace stationeryManagement.Controllers
     {
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
-        
+
         public AuthController(IUserService userService, IAuthService authService)
         {
             _userService = userService;
             _authService = authService;
         }
+
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLogin)
@@ -32,12 +33,18 @@ namespace stationeryManagement.Controllers
             if (user != null)
             {
                 var tokenString = _authService.GenerateToken(user);
-                response = Ok(new { token = tokenString });
+                response = Ok(
+                    new
+                    {
+                        UserId = user.UserId,
+                        UserName = user.Name,
+                        Avatar = user.Image,
+                        Role = user.Role.RoleName,
+                        token = tokenString
+                    });
             }
+
             return response;
         }
-        
-
-
     }
 }

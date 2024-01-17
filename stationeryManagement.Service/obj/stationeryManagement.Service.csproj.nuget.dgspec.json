@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\E-Project\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj": {}
+    "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj": {}
   },
   "projects": {
-    "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
+    "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+        "projectUniqueName": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
         "projectName": "stationeryManagement.Data",
-        "projectPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
-        "packagesPath": "C:\\Users\\Hoang Anh\\.nuget\\packages\\",
-        "outputPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\obj\\",
+        "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj",
+        "packagesPath": "C:\\Users\\trid2\\.nuget\\packages\\",
+        "outputPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hoang Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\trid2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,17 +72,21 @@
         }
       }
     },
-    "F:\\E-Project\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj": {
+    "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
+        "projectUniqueName": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
         "projectName": "stationeryManagement.Service",
-        "projectPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
-        "packagesPath": "C:\\Users\\Hoang Anh\\.nuget\\packages\\",
-        "outputPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Service\\obj\\",
+        "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\stationeryManagement.Service.csproj",
+        "packagesPath": "C:\\Users\\trid2\\.nuget\\packages\\",
+        "outputPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hoang Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\trid2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,8 +100,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
-                "projectPath": "F:\\E-Project\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj"
+              "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj": {
+                "projectPath": "F:\\BKAP\\Sem3\\ASP.NET\\Eproject\\be-stationery-management\\stationeryManagement.Data\\stationeryManagement.Data.csproj"
               }
             }
           }
