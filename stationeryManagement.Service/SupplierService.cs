@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data.Dto;
 using stationeryManagement.Data.Model;
 using stationeryManagement.Service.Common;
+using stationeryManagement.Service.Exceptions;
 using stationeryManagement.Service.Interface;
 
 namespace stationeryManagement.Service
@@ -53,10 +54,11 @@ namespace stationeryManagement.Service
         public async Task<bool> DeleteSupplier(int supplierId)
         {
             var supplier = await _unitOfWork.SupplierRepository.GetByIdAsync(supplierId);
-            if(supplier != null)
+            if (supplier is null)
             {
-                   _unitOfWork.SupplierRepository.Delete(supplier);
+                throw new NotFoundException("Not Found this suppiler");
             }
+            _unitOfWork.SupplierRepository.Delete(supplier);
 
             return await _unitOfWork.CommitAsync() > 0;
         }

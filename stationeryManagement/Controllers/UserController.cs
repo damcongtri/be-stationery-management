@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Dto;
 using stationeryManagement.Data.Enum;
 using stationeryManagement.Data.Model;
 using stationeryManagement.Data.Static;
+using stationeryManagement.Service.Exceptions;
 using stationeryManagement.Service.Interface;
 using stationeryManagement.Service.Utils;
 
@@ -34,7 +36,6 @@ namespace stationeryManagement.Controllers
         {
             try
             {
-               
                 return Ok(await _userService.GetUsers());
             }
             catch (Exception e)
@@ -81,7 +82,6 @@ namespace stationeryManagement.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _userService.DeleteUser(id);
-
             return Ok(result);
         }
     }
