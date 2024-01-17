@@ -17,6 +17,7 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     private IRequestRepository _requestRepository;
     private IImportRepository _importRepository;
     private IRequestDetailRepository _requestDetailRepository;
+    private IImportDetailRepository _importDetailRepository;
     
     public UnitOfWork(IDbContext context) : base(context)
     {
@@ -32,4 +33,7 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
     public IImportRepository ImportRepository => _importRepository ??= new ImportRepository(DbContext);
     public IStationeryRepository StationeryRepository=> _stationeryRepository ??= new StationeryRepository(DbContext);
     public IRequestDetailRepository RequestDetailRepository => _requestDetailRepository ??= new RequestDetailRepository(DbContext);
+
+    public IImportDetailRepository ImportDetailRepository =>
+        _importDetailRepository ??= new ImportDetailRepository(DbContext);
 }

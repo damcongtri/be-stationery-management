@@ -5,6 +5,7 @@ using stationeryManagement.Data.Model;
 using stationeryManagement.Service;
 using stationeryManagement.Service.Interface;
 using System.Composition;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,33 +29,36 @@ namespace stationeryManagement.Controllers
 
         // GET api/<ImportController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int ImportId)
+        public async Task<IActionResult> Get(int importId)
         {
-            return Ok(await _importService.GetImportId(ImportId));
+            return Ok(await _importService.GetImportId(importId));
         }
         
         // POST api/<ImportController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ImportDto import)
         {
-            var result = await _importService.CreateImport(import ,import.UserCreateId);
+            var userIdClaim = User.FindFirst(claim => claim.Type == ClaimTypes.Sid);
+            var userId = Guid.Parse(userIdClaim.Value) ;
+            var result = await _importService.CreateImport(import ,userId);
             return Ok(result);
         }
 
-        // PUT api/<ImportController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put( [FromBody] ImportDto import,int id)
-        {
-            var result = await _importService.UpdateImport(import, import.UserCreateId, id);
-            return Ok(result);
-        }
+        // // PUT api/<ImportController>/5
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Put( [FromBody] ImportDto import,int id)
+        // {
+        //     var userIdClaim = User.FindFirst(claim => claim.Type == ClaimTypes.Sid);
+        //     var userId = Guid.Parse(userIdClaim.Value) ;
+        //     var result = await _importService.UpdateImport(import, userId, id);
+        //     return Ok(result);
+        // }
 
         // DELETE api/<ImportController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int ImportId)
-
+        public async Task<IActionResult> Delete(int importId)
         {
-            return Ok(await _importService.DeleteImport(ImportId));
+            return Ok(await _importService.DeleteImport(importId));
         }
     }
 }

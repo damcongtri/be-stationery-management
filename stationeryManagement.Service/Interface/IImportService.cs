@@ -6,7 +6,7 @@ namespace stationeryManagement.Service.Interface
 {
     public interface IImportService
     {
-        Task<Import> CreateImport(ImportDto import,Guid id);
+        Task<Import?> CreateImport(ImportDto import,Guid id);
         // Read
         Task<Import?> GetImportId(int ImportId);
         Task<IEnumerable<Import>> GetAllImport();

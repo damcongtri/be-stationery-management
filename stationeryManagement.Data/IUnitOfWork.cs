@@ -12,4 +12,5 @@ public interface IUnitOfWork: IUnitOfWorkBase
     IRequestRepository RequestRepository { get; }
     IImportRepository ImportRepository { get; }
     IRequestDetailRepository RequestDetailRepository { get; }
+    IImportDetailRepository ImportDetailRepository { get; }
 }
