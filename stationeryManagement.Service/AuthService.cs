@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using stationeryManagement.Data.Model;
+using stationeryManagement.Data.Static;
 using stationeryManagement.Service.Interface;
 
 namespace stationeryManagement.Service;
@@ -29,7 +30,7 @@ public class AuthService : IAuthService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Sid, user.UserId.ToString()),
-            new Claim(ClaimTypes.Role, user.Role.RoleName),
+            new Claim(ClaimTypes.Role, !string.IsNullOrWhiteSpace(user.RoleId.ToString())?user.Role.RoleName: Roles.User),
             new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.Email, user.Email),
         };

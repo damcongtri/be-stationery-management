@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using stationeryManagement.Data;
 using stationeryManagement.Data.Dto;
 using stationeryManagement.Data.Model;
-using stationeryManagement.Service;
 using stationeryManagement.Service.Interface;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,89 +11,48 @@ namespace stationeryManagement.Controllers
     [ApiController]
     public class StationeryController : ControllerBase
     {
-        private IStationeryService _stationeryservice;
-        public StationeryController(IStationeryService stationeryservice)
+        private readonly IStationeryService _stationeryService;
+
+        public StationeryController(IStationeryService stationeryService)
         {
-            _stationeryservice = stationeryservice;
+            _stationeryService = stationeryService;
         }
+
         // GET: api/<StationeryController>
         [HttpGet]
         public async Task<IEnumerable<Stationery>> Get()
         {
-            return await _stationeryservice.GetAllStationery();
+            return await _stationeryService.GetAllStationery();
         }
 
         // GET api/<StationeryController>/5
-        [HttpGet("{id}", Name = "stationery")]
-        public async Task<IActionResult> Get(int itemid)
+        [HttpGet("{id:int}", Name = "stationery")]
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _stationeryservice.GetStationeryById(itemid));
+            return Ok(await _stationeryService.GetStationeryById(id));
         }
 
         // POST api/<StationeryController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] StationeryDto s)
+        public async Task<IActionResult> Post([FromForm] StationeryDto stationeryDto)
         {
-          
-                var stationery = new StationeryDto { StationeryId=s.StationeryId,Name=s.Name,Description=s.Description,Price=s.Price,Inventory=s.Inventory,ReorderLevel=s.ReorderLevel,SupplierId=s.SupplierId,UnitPrice=s.UnitPrice };
-                //xử lý ảnh
-                if (s.ImageFile.Length > 0)
-                {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "images", Path.GetRandomFileName());
-                    using (var stream = System.IO.File.Create(path))
-                    {
-                        await s.ImageFile.CopyToAsync(stream);
-                    }
-                    stationery.Image = "/images/" + path;
-                }
-                else
-                {
-                stationery.Image = "";
-                }
-            _stationeryservice.CreateStationery( stationery);
-               
-                return Ok(stationery);
-          
+            var result = await _stationeryService.CreateStationery(stationeryDto);
+            return Ok(result);
         }
 
         // PUT api/<StationeryController>/5
-        [HttpPut("{id}")]
-
-        public async Task<IActionResult> Put(int itemid, [FromForm] StationeryDto s)
+        [HttpPut("{stationeryId:int}")]
+        public async Task<IActionResult> Put([FromForm] StationeryDto stationeryDto,int stationeryId)
         {
-            var stationery = new StationeryDto { StationeryId = s.StationeryId, Name = s.Name, Description = s.Description, Price = s.Price, Inventory = s.Inventory, ReorderLevel = s.ReorderLevel, SupplierId = s.SupplierId, UnitPrice = s.UnitPrice };
-            if (s.ImageFile.Length > 0)
-            {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "images", Path.GetRandomFileName());
-                using (var stream = System.IO.File.Create(path))
-                {
-                    await s.ImageFile.CopyToAsync(stream);
-                }
-                stationery.Image = "/images/" + path;
-                if (!string.IsNullOrEmpty(stationery.Image))
-                {
-                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), stationery.Image.TrimStart('/'));
-                    if (System.IO.File.Exists(oldImagePath))
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-                }
-            }
-            else
-            {
-                stationery.Image = "";
-            }
-            _stationeryservice.UpdateStationery(stationery,itemid);
-
-            return Ok(stationery);
+            var result = await _stationeryService.UpdateStationery(stationeryDto, stationeryId);
+            return Ok(result);
         }
 
         // DELETE api/<StationeryController>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int itemid)
+        [HttpDelete("{stationeryId:int}")]
+        public async Task<IActionResult> Delete(int stationeryId)
         {
-            return Ok(await _stationeryservice.DeleteStationery(itemid));
+            return Ok(await _stationeryService.DeleteStationery(stationeryId));
         }
-        
     }
 }

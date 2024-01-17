@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using stationeryManagement.Data.Model;
 
 namespace stationeryManagement.Data;
@@ -13,5 +14,6 @@ public class Supplier
     public string ContactInfo { get; set; }
     public bool Deleted { get; set; } = false;
     
+    [JsonIgnore]
     public virtual ICollection<Stationery>? StationeryItems { get; set; }
 }
