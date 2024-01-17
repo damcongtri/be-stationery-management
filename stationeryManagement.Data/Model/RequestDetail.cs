@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace stationeryManagement.Data.Model;
 
@@ -12,7 +13,9 @@ public class RequestDetail
     public int Quantity { get; set; }
     
     [ForeignKey("RequestId")]
-    public virtual Request Request { get; set; }
+    [JsonIgnore]
+    public virtual Request? Request { get; set; }
     [ForeignKey("StationeryId")]
-    public virtual Stationery Stationery { get; set; }
+    
+    public virtual Stationery? Stationery { get; set; }
 }

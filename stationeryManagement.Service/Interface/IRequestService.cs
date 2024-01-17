@@ -15,5 +15,5 @@ public interface IRequestService
     Task<IEnumerable<Request>> GetRequestForUser(Guid userId);
 
     // Update
-    Task<bool> UpdateSatus(int RequestId, RequestStatus status);
+    Task<bool> UpdateStatus(int requestId, RequestStatus status, Guid manager);
 }

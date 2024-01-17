@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data.Common.BaseRepository;
 using stationeryManagement.Data.Common.DbContext;
 using stationeryManagement.Data.Model;
@@ -20,8 +21,9 @@ public class RequestRepository: GenericRepository<Request>,IRequestRepository
     //     // need to call unitOfWork.CommitAsync() to save the changes
     //     return ent;
     // }
-    public IQueryable<Request> GetWithDetailAsync()
+
+    public IQueryable<Request> GetWithDetail(Expression<Func<Request, bool>> predicate, bool tracking = false)
     {
-        return this.DbSet.Include(r => r.RequestDetails).AsQueryable();
+        return tracking ? this.DbSet.Include(r=>r.RequestDetails).AsTracking().Where(predicate) : this.DbSet.Include(r=>r.RequestDetails).AsNoTracking().Where(predicate);
     }
 }

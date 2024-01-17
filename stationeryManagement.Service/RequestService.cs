@@ -29,45 +29,63 @@ public class RequestService:EntityService<Request>,IRequestService
 
     public async Task<IEnumerable<Request>> GetRequestForUser(Guid userId)
     {
-        return await _unitOfWork.RequestRepository.FindBy(r => r.UserId == userId).ToListAsync();
+        return await _unitOfWork.RequestRepository.GetWithDetail(r => r.UserId == userId).ToListAsync();
     }
 
     
-
     // Create
     
     public async Task<Request?> CreateRequest(RequestCreateDto request, Guid userId)
     {
-        var newRequset =  new Request()
+        var newRequest =  new Request()
         {
            UserId = userId
         };
-        foreach (var item in request.Stationeries)
+        var rq1 =  await _unitOfWork.RequestRepository.AddAsync(newRequest);
+        
+        await _unitOfWork.CommitAsync();
+        foreach (var rd in request.Stationeries.Select(item => new RequestDetail
+                 {
+                     RequestId = rq1.RequestId,
+                     StationeryId = item.StationeryId,
+                     Quantity = item.Quantity
+                 }))
         {
-            var rd = new RequestDetail
-            {
-                StationeryId = item.StationeryId,
-                Quantity = item.Quantity
-            };
-            newRequset.RequestDetails.Add(rd);
+          var rrd =   await _unitOfWork.RequestDetailRepository.AddAsync(rd);
+          rq1.RequestDetails.Add(rrd);
         }
 
-        var r = await _unitOfWork.RequestRepository.AddAsync(newRequset);
-        return await _unitOfWork.CommitAsync() >0 ?r:null;
+       
+        return await _unitOfWork.CommitAsync()>0?rq1 :null;
     }
     //Update
-    public async Task<bool> UpdateSatus(int requestId, RequestStatus status)
+    public async Task<bool> UpdateStatus(int requestId, RequestStatus status, Guid userId)
     {
         var findRequest = await _unitOfWork.RequestRepository.GetByIdAsync(requestId);
-        findRequest.ApprovalStatus = status;
-        if (status == RequestStatus.Cancel)
+        if (findRequest != null)
         {
-            findRequest.CancellationDate = DateTime.Now;
+            if (findRequest.ApprovalStatus != RequestStatus.Pending)
+            {
+                return false;
+            }
+            findRequest.ApprovalStatus = status;
+            
+            if (status == RequestStatus.Cancel)
+            {
+                if (findRequest.UserId != userId)
+                {
+                    throw new Exception("Unauthorized");
+                }
+                findRequest.CancellationDate = DateTime.Now;
+            }
+            else
+            {
+                findRequest.ApprovedId = userId;
+                findRequest.WithdrawalDate = DateTime.Now;
+            }
+            _unitOfWork.RequestRepository.UpdateAsync(findRequest);
         }
-        if (status == RequestStatus.Approved)
-        {
-            findRequest.WithdrawalDate = DateTime.Now;
-        }
+
         return await _unitOfWork.CommitAsync() >0;
     }
 }

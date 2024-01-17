@@ -93,12 +93,9 @@ public class UserService : EntityService<User>, IUserService
                     FileUtils.RemoveFile(findUser.Image);
                 }
 
-                userDto.Image = path;
+                findUser.Image = path;
             }
-            else
-            {
-                userDto.Image = "/images/avatar/default_avatar.jpg";
-            }
+            
 
             var updateUser = new User
             {
@@ -106,10 +103,10 @@ public class UserService : EntityService<User>, IUserService
                 Name = string.IsNullOrWhiteSpace(userDto.Name) ? findUser.Name : userDto.Name,
                 Email = userDto.Email,
                 RoleId = userDto.RoleId,
-                Image = userDto.Image,
+                Image = findUser.Image,
                 RegistrationDate = DateTime.Now,
                 SuperiorId = userDto.SuperiorId,
-                Password = PasswordUtils.HashPassword(userDto.Password),
+                Password = findUser.Password,
             };
             _unitOfWork.UserRepository.UpdateAsync(updateUser);
             return await _unitOfWork.CommitAsync() > 0;

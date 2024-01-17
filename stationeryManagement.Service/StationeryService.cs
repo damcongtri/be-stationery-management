@@ -25,7 +25,7 @@ namespace stationeryManagement.Service
         }
         public async Task<IEnumerable<Stationery>> GetAllStationery()
         {
-            return await _unitOfWork.StationeryRepository.GetAll().ToListAsync();
+            return await _unitOfWork.StationeryRepository.GetWithCategoryAndSupplier().ToListAsync();
         }
         public async Task<bool> UpdateStationery(StationeryDto stationeryDto, int stationeryId)
         {
@@ -43,7 +43,7 @@ namespace stationeryManagement.Service
             }    
             else
             {
-                stationeryDto.Image = "/images/avatar/default_stationery.jpg";
+                stationeryDto.Image = "/images/stationery/default_stationery.jpg";
             }
 
             findStationery.Name = stationeryDto.Name;
@@ -59,10 +59,10 @@ namespace stationeryManagement.Service
         }
         public async Task<bool> DeleteStationery(int stationeryId)
         {
-            var stationery = await _unitOfWork.UserRepository.GetByIdAsync(stationeryId);
+            var stationery = await _unitOfWork.StationeryRepository.GetByIdAsync(stationeryId);
             if (stationery != null)
             {
-                _unitOfWork.UserRepository.Delete(stationery);
+                _unitOfWork.StationeryRepository.Delete(stationery);
                 var result = await _unitOfWork.CommitAsync() > 0;
                 if (!result) return result;
                 if (!string.IsNullOrWhiteSpace(stationery.Image))

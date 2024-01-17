@@ -11,4 +11,5 @@ public interface IUnitOfWork: IUnitOfWorkBase
     IStationeryRepository StationeryRepository { get; }
     IRequestRepository RequestRepository { get; }
     IImportRepository ImportRepository { get; }
+    IRequestDetailRepository RequestDetailRepository { get; }
 }
