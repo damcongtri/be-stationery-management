@@ -24,6 +24,7 @@ namespace stationeryManagement.Controllers
         }
         // GET: api/<ImportController>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<Import>> Get()
         {
             return await _importService.GetAllImport();

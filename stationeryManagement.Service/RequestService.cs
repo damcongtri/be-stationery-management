@@ -61,7 +61,7 @@ public class RequestService:EntityService<Request>,IRequestService
     //Update
     public async Task<bool> UpdateStatus(int requestId, RequestStatus status, Guid userId)
     {
-        var findRequest = await _unitOfWork.RequestRepository.GetByIdAsync(requestId);
+        var findRequest = await _unitOfWork.RequestRepository.GetWithDetail(r => r.RequestId == requestId).FirstOrDefaultAsync();
         if (findRequest != null)
         {
             if (findRequest.ApprovalStatus != RequestStatus.Pending)
@@ -82,6 +82,15 @@ public class RequestService:EntityService<Request>,IRequestService
             {
                 findRequest.ApprovedId = userId;
                 findRequest.WithdrawalDate = DateTime.Now;
+                if (status == RequestStatus.Approved)
+                {
+                    foreach (var item in findRequest.RequestDetails)
+                    {
+                        var findS = await _unitOfWork.StationeryRepository.GetByIdAsync(item.StationeryId);
+                        findS.Inventory -= item.Quantity;
+                        _unitOfWork.StationeryRepository.UpdateAsync(findS);
+                    }
+                }
             }
             _unitOfWork.RequestRepository.UpdateAsync(findRequest);
         }
