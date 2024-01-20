@@ -1,10 +1,12 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using stationeryManagement.Code;
+using stationeryManagement.Hubs;
 using stationeryManagement.Middlewares;
-
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSignalR();
+
 // builder.WebHost.ConfigureKestrel(serverOptions =>
 // {
 //     serverOptions.ListenAnyIP(5000);
@@ -20,6 +22,7 @@ builder.Services.AddCors(options =>
         builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
+        // .AllowCredentials();
     });
 });
 // Add services to the container.
@@ -52,9 +55,9 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseCors("MyPolicy");
+app.MapHub<NotifyHub>("/notify-hub");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
-
 app.Run();
