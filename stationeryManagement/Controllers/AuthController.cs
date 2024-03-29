@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using stationeryManagement.Data.Dto;
+using stationeryManagement.Data.Dto.UserDto;
 using stationeryManagement.Data.Model;
 using stationeryManagement.Service.Interface;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;

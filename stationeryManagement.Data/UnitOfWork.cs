@@ -3,12 +3,14 @@ using stationeryManagement.Data.Common.DbContext;
 using stationeryManagement.Data.Repository;
 using stationeryManagement.Data.Repository.Interface;
 using System.Security.AccessControl;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace stationeryManagement.Data;
 
 public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
 {
+    private DbContext _dbContext;
     private ICategoryRepository _categoryRepository;
     private ISupplierRepository _supplierRepository;
     private IUserRepository _userRepository;
@@ -36,4 +38,34 @@ public class UnitOfWork:UnitOfWorkBase,IUnitOfWork
 
     public IImportDetailRepository ImportDetailRepository =>
         _importDetailRepository ??= new ImportDetailRepository(DbContext);
+    
+    
+    
+    public async Task BeginTransactionAsync()
+    {
+        await _dbContext.Database.BeginTransactionAsync();
+    }
+
+    public async Task CommitTransactionAsync()
+    {
+        await _dbContext.Database.CommitTransactionAsync();
+    }
+
+    /// <summary>
+    /// Rollback transaction
+    /// </summary>
+    /// <returns></returns>
+    public async Task<bool> RollbackAsync()
+    {
+        try
+        {
+            await _dbContext.Database.RollbackTransactionAsync();
+        }
+        catch (Exception)
+        {
+            // Swallow exception (this might be used in places where a transaction isn't setup)
+        }
+
+        return true;
+    }
 }

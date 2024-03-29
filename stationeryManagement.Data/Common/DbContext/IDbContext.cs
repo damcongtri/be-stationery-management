@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace stationeryManagement.Data.Common.DbContext;
 
@@ -32,4 +33,6 @@ public interface IDbContext: IDisposable
     /// <param name="o">Object</param>
     /// <param name="propertyName">Property name</param>
     void MarkAsModified(object o, string propertyName);
+    //
+    // DatabaseFacade Database();
 }

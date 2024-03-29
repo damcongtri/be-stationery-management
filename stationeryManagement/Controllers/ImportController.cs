@@ -17,7 +17,7 @@ namespace stationeryManagement.Controllers
     [Authorize]
     public class ImportController : ControllerBase
     {
-        private IImportService _importService;
+        private readonly IImportService _importService;
         public ImportController(IImportService importService)
         {
             _importService = importService;

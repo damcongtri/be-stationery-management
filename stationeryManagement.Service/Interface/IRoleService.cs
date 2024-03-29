@@ -1,5 +1,6 @@
 ﻿using stationeryManagement.Data.Dto;
 using stationeryManagement.Data;
+using stationeryManagement.Data.Dto.RoleDto;
 
 namespace stationeryManagement.Service.Interface
 {

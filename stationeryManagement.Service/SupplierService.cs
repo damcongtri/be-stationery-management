@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using stationeryManagement.Data.Dto;
+using stationeryManagement.Data.Dto.SupplierDto;
 using stationeryManagement.Data.Model;
 using stationeryManagement.Service.Common;
 using stationeryManagement.Service.Exceptions;

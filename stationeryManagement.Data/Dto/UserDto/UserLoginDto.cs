@@ -1,4 +1,4 @@
-﻿namespace stationeryManagement.Data.Dto;
+﻿namespace stationeryManagement.Data.Dto.UserDto;
 
 public class UserLoginDto
 {

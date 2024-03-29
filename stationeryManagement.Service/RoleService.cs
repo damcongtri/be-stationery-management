@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Dto;
+using stationeryManagement.Data.Dto.RoleDto;
 using stationeryManagement.Service.Common;
 using stationeryManagement.Service.Interface;
 

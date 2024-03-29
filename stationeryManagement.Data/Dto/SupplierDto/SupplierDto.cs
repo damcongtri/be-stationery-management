@@ -1,7 +1,6 @@
-﻿using stationeryManagement.Data.Model;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace stationeryManagement.Data.Dto
+namespace stationeryManagement.Data.Dto.SupplierDto
 {
     public class SupplierDto
     {

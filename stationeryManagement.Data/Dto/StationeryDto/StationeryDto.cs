@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace stationeryManagement.Data.Dto
+namespace stationeryManagement.Data.Dto.StationeryDto
 {
     public class StationeryDto
     {

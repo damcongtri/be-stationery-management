@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
-namespace stationeryManagement.Data.Dto
+namespace stationeryManagement.Data.Dto.RoleDto
 {
     public class RoleDto
     {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using stationeryManagement.Data.Dto.RequestDto;
 using stationeryManagement.Data.Enum;
 using stationeryManagement.Data.Model;
@@ -22,7 +23,6 @@ namespace stationeryManagement.Controllers
     public class RequestController : ControllerBase
     {
         private readonly IRequestService _requestService;
-
         public RequestController(IRequestService requestService)
         {
             _requestService = requestService;
@@ -60,6 +60,7 @@ namespace stationeryManagement.Controllers
             {
                 return BadRequest("không tìm thấy user");
             }
+            // _hubContext
             return Ok(await _requestService.CreateRequest(requestCreateDto,userId));
         } 
         // POST: api/Request

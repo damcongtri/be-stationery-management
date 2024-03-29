@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using stationeryManagement.Data;
 using stationeryManagement.Data.Common.BaseRepository;
 using stationeryManagement.Data.Dto;
+using stationeryManagement.Data.Dto.UserDto;
 using stationeryManagement.Data.Model;
+using stationeryManagement.Data.Static;
 using stationeryManagement.Service.Common;
 using stationeryManagement.Service.Interface;
 using stationeryManagement.Service.Utils;
@@ -123,5 +125,10 @@ public class UserService : EntityService<User>, IUserService
         }
         return null;
     }
-    
+
+    public async Task<bool> IsAdminOrManager(Guid userId)
+    {
+        var user = await _unitOfWork.UserRepository.GetUserWithRole().FirstOrDefaultAsync(x=>x.UserId == userId);
+        return user?.Role is { RoleName: Roles.Admin or Roles.Manager };
+    }
 }

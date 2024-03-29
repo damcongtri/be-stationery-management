@@ -1,5 +1,6 @@
 ﻿using stationeryManagement.Data;
 using stationeryManagement.Data.Dto;
+using stationeryManagement.Data.Dto.SupplierDto;
 using stationeryManagement.Data.Model;
 
 namespace stationeryManagement.Service.Interface

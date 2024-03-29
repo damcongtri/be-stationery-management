@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using stationeryManagement.Data.Model;
 
-namespace stationeryManagement.Data.Dto;
+namespace stationeryManagement.Data.Dto.CategoryDto;
 
 public class CategoryDto
 {
