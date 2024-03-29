@@ -59,7 +59,7 @@ namespace stationeryManagement.Service
 
         public async Task<IEnumerable<Import>> GetAllImport()
         {
-            return await _unitOfWork.ImportRepository.GetAll().ToListAsync();
+            return await _unitOfWork.ImportRepository.GetWithUser().ToListAsync();
         }
 
         public async Task<Import?> GetImportId(int importId)

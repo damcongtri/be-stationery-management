@@ -17,13 +17,14 @@ namespace stationeryManagement.Controllers
     [Authorize]
     public class ImportController : ControllerBase
     {
-        private IImportService _importService;
+        private readonly IImportService _importService;
         public ImportController(IImportService importService)
         {
             _importService = importService;
         }
         // GET: api/<ImportController>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<Import>> Get()
         {
             return await _importService.GetAllImport();

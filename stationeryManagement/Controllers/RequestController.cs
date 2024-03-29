@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using stationeryManagement.Data.Dto.RequestDto;
 using stationeryManagement.Data.Enum;
 using stationeryManagement.Data.Model;
 using stationeryManagement.Data.Static;
+using stationeryManagement.Service.Exceptions;
 using stationeryManagement.Service.Interface;
 
 namespace stationeryManagement.Controllers
@@ -21,7 +23,6 @@ namespace stationeryManagement.Controllers
     public class RequestController : ControllerBase
     {
         private readonly IRequestService _requestService;
-
         public RequestController(IRequestService requestService)
         {
             _requestService = requestService;
@@ -29,6 +30,7 @@ namespace stationeryManagement.Controllers
 
         // GET: api/Request
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<Request>> Get()
         {
             return await _requestService.GetAllRequest();
@@ -58,6 +60,7 @@ namespace stationeryManagement.Controllers
             {
                 return BadRequest("không tìm thấy user");
             }
+            // _hubContext
             return Ok(await _requestService.CreateRequest(requestCreateDto,userId));
         } 
         // POST: api/Request
@@ -69,6 +72,10 @@ namespace stationeryManagement.Controllers
             {
                 var userIdClaim = User.FindFirst(claim => claim.Type == ClaimTypes.Sid);
                 var userId = Guid.Parse(userIdClaim.Value);
+                if (string.IsNullOrEmpty(userId.ToString()))
+                {
+                    throw new BadRequestException("Có lỗi trong khi đăng nhập ");
+                }
                 return Ok(await _requestService.UpdateStatus(requestCreateDto.RequestId, requestCreateDto.Status,
                     userId));
             }

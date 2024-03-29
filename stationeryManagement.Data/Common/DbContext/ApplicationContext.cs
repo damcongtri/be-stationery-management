@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using stationeryManagement.Data.Common.DbContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using stationeryManagement.Data.Model;
 
 namespace stationeryManagement.Data.Common.DbContext;
@@ -13,6 +14,9 @@ public class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext, IDbCo
     {
         this.Entry(o).Property(propertyName).IsModified = true;
     }
+
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Role>()

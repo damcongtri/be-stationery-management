@@ -7,10 +7,12 @@ namespace stationeryManagement.Middlewares;
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<dynamic> _logger;
 
-    public ExceptionHandlingMiddleware(RequestDelegate next)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<dynamic> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task Invoke(HttpContext context)
@@ -21,37 +23,35 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
+            _logger.LogError($"Something went wrong: {ex}");
             await HandleExceptionAsync(context, ex);
         }
     }
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var code = HttpStatusCode.InternalServerError;
-
+        var result = new ErrorDetails();
         switch (exception)
         {
-            case NotFoundException _:
-                code = HttpStatusCode.NotFound;
+            case NotFoundException:
+                result.StatusCode = HttpStatusCode.NotFound;
+                result.Message = exception.Message;
                 break;
-            case UnauthorizedException _:
-                code = HttpStatusCode.Unauthorized;
+            case UnauthorizedException:
+                result.StatusCode = HttpStatusCode.Unauthorized;
+                result.Message = exception.Message;
                 break;
-            case BadRequestException _:
-                code = HttpStatusCode.BadRequest;
+            case BadRequestException:
+                result.StatusCode = HttpStatusCode.BadRequest;
+                result.Message = exception.Message;
                 break;
             default:
-                code = HttpStatusCode.InternalServerError;
+                result.StatusCode = HttpStatusCode.InternalServerError;
                 break;
-            // Thêm các case cho các loại exception khác nếu cần
         }
 
-        var result = JsonConvert.SerializeObject(new { error = exception.Message });
-        // if (code == HttpStatusCode.InternalServerError)
-        // {
-        //     result = JsonConvert.SerializeObject(new { error = "An error occurred" });
-        // }
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)code;
-        return context.Response.WriteAsync(result);
+        context.Response.StatusCode = (int)result.StatusCode;
+        return context.Response.WriteAsync(result.ToString());
     }
+
 }

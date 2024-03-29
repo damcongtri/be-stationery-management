@@ -129,7 +129,7 @@ public class GenericRepository<T> : IGenericRepository<T>
         if (!string.IsNullOrWhiteSpace(propertyName))
         {
             // todo: need confirm again about [TargetEntry!.State]
-            this.Entities.Entry(entity).Reference(propertyName).TargetEntry!.State = EntityState.Modified;
+            this.Entities.Entry(entity).Reference(propertyName).TargetEntry.State = EntityState.Modified;
         }
     }
 

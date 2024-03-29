@@ -4,6 +4,8 @@ using stationeryManagement.Data.Common.DbContext;
 using stationeryManagement.Middlewares;
 using stationeryManagement.Service;
 using stationeryManagement.Service.Interface;
+using stationeryManagement.Service.SignalRService;
+using stationeryManagement.Service.SignalRService.Presence;
 
 namespace stationeryManagement.Code;
 
@@ -28,6 +30,10 @@ public static class DependenciesInjectionRegister
         builder.Services.AddScoped<IImportService, ImportService>();
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<IRequestService, RequestService>();
+        // SignalR
+        builder.Services.AddScoped<IPresenceTracker, PresenceTracker>();
+        builder.Services.AddScoped<IEventHub, EventHub>();
+
 
     }
 }
